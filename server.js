@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 const express = require('express')
 const app = express()
 app.use(express.json())
@@ -8,7 +8,9 @@ app.use(bodyParser.json())
 
 const mongoose = require('mongoose');
 // <username>:<password>@<mongodbClusterName>/<db>
-mongoose.connect('mongodb+srv://userWebdev:5610@clusterwebdevfinal.nlvkz.mongodb.net/whiteboard',
+// mongodb+srv://userWebdev:5610@clusterwebdevfinal.nlvkz.mongodb.net/whiteboard
+const uri = process.env.MONGODB_URI;
+mongoose.connect(uri,
     {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 // configure CORS
@@ -25,5 +27,5 @@ require("./controllers/quizzes-controller")(app)
 require("./controllers/question-controller")(app)
 require('./controllers/quiz-attempts-controller')(app)
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
 console.log("running server.js")
