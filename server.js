@@ -1,6 +1,15 @@
-// TODO: review https://expressjs.com/
+
 const express = require('express')
 const app = express()
+app.use(express.json())
+let bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+const mongoose = require('mongoose');
+// <username>:<password>@<mongodbClusterName>/<db>
+mongoose.connect('mongodb+srv://userWebdev:5610@clusterwebdevfinal.nlvkz.mongodb.net/whiteboard',
+    {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 // configure CORS
 app.use(function (req, res, next) {
@@ -14,6 +23,7 @@ app.use(function (req, res, next) {
 
 require("./controllers/quizzes-controller")(app)
 require("./controllers/question-controller")(app)
-// console.log("running server.js")
+require('./controllers/quiz-attempts-controller')(app)
 
 app.listen(3000)
+console.log("running server.js")
