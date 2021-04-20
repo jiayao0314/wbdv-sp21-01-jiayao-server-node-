@@ -8,7 +8,6 @@ app.use(bodyParser.json())
 
 const mongoose = require('mongoose');
 // <username>:<password>@<mongodbClusterName>/<db>
-// mongodb+srv://userWebdev:5610@clusterwebdevfinal.nlvkz.mongodb.net/whiteboard
 const uri = process.env.MONGODB_URI;
 mongoose.connect(uri,
     {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
