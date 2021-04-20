@@ -9,8 +9,7 @@ app.use(bodyParser.json())
 const mongoose = require('mongoose');
 // <username>:<password>@<mongodbClusterName>/<db>
 const uri = process.env.MONGODB_URI;
-mongoose.connect(uri,
-    {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 // configure CORS
 app.use(function (req, res, next) {
