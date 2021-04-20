@@ -19,6 +19,11 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
+
+
 require("./controllers/quizzes-controller")(app)
 require("./controllers/question-controller")(app)
 require('./controllers/quiz-attempts-controller')(app)
